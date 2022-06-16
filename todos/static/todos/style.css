@@ -1,0 +1,16 @@
+html,body {
+    padding-left:5px;
+    padding-right: 5px;
+    background-color: #006699;
+    color:white;
+    font-family: "Sofia", sans-serif;
+    height: 100%;
+}
+h3{
+    border-bottom: 2px solid white
+}
+#todo_content{
+    padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid white
+}

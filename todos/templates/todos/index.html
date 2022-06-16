@@ -1,0 +1,47 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+      <link rel="stylesheet" type="text/css" href="{% static 'todos/style.css'%}">
+</head>
+<body>
+    <h1 class="text-center">Znydee's Todo</h1>
+    <h2 class="text-center">welcome back znydee</h2>
+    <form method="POST" id="post-form" action="{% url 'todo-home'%}">
+        {% csrf_token %}
+        <div class="form-group">
+            <legend>Add new</legend>
+            <label for="title">Title</label>
+            <div>
+                <input type="text" id="title" class="form-control" name="title">
+            </div>
+          </div>
+          <div class="form-group">
+                <label for="descriptions">Description</label>
+                <textarea class="form-control" id="descriptions" rows="3" name="description"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg">Add</button>
+    </form>
+    <h3 class="text-center">Todo list</h3>
+    {% for todo in Todos reversed%}
+    <div class="container-fluid" id="todo_content">
+        <div class="row">
+            <div class="col-sm-10">
+                <h4>{{todo.title}}</h4>
+                <p class="text-justify">{{todo.description}}</p>
+            </div>
+            <div class="col" id="del_button">
+                <a class="btn btn-danger " href="{% url 'todo-delete' todo.id%}">Delete</a>
+            </div>
+        </div>
+   </div>         
+    {%endfor%}
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+</body>
+</html>
